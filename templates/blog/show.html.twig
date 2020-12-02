@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="articles">
+
+        <article>
+            <h1>{{ article.title }}</h1>
+                <div class="content"><div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y')  }} à {{ article.createdAt | date('H:i') }}
+                    dans la catégorie des bons petits plats!
+                </div>
+                <div class="content">
+                    <div class="raw">
+                        <img src="{{ article.image }}"alt="">
+                    </div>
+                    <div class="raw">
+                        {{ article.content | raw }}
+                    </div>
+                </div>
+        </article>
+
+    </section>
+
+{% endblock %}
