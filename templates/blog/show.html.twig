@@ -6,7 +6,7 @@
         <article>
             <h1>{{ article.title }}</h1>
                 <div class="content"><div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y')  }} à {{ article.createdAt | date('H:i') }}
-                    dans la catégorie des bons petits plats!
+                    dans la catégorie {{article.category.title}}
                 </div>
                 <div class="content">
                     <div class="raw">
@@ -18,6 +18,39 @@
                 </div>
         </article>
 
+    </section>
+
+    <section class="commentaires">
+        <h2>{{ article.comments | length }} Commentaire:</h2>
+        {%  for comment in article.comments %}
+            <div class="comment">
+                <div class="row">
+                    <div class="col-3">
+                        {{ comment.author }} (<small>{{ comment.createdAt | date ('d/m/Y à H:i') }}</small>)
+                    </div>
+                    <div class="col">
+                        {{ comment.content | raw }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        {% if app.user %}
+
+        {{  form_start(commentForm) }}
+
+        {{  form_row(commentForm.author, {'attr':{'placeholder': 'Votre nom ...'}}) }}
+
+        {{  form_row(commentForm.content, {'attr':{'placeholder': 'Votre commentaire ...'}}) }}
+
+        <button type="submit" class="btn btn-success">Commenter !</button>
+
+        {{  form_end (commentForm)}}
+
+        {% else %}
+            <h5>Connecter vous pour laisser un commentaire...</h5>
+            <a href="{{ path('security_login') }}" class="btn btn-success">Connecter vous !</a>
+        {% endif %}
     </section>
 
 {% endblock %}
