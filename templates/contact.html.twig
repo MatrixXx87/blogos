@@ -11,12 +11,20 @@
                 <img src="https://i.skyrock.net/7122/11597122/pics/2439790137_1.jpg" class="img-icon col-3" >
             </div>
         </div>
-        <div class="container-fluid bg-3 text-left" style="text-align:center;">
-
-            <hr>
+    <div id="contactForm" class="mt-4">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col">{{ form_row(form.firstname) }}</div>
+            <div class="col">{{ form_row(form.lastname) }}</div>
         </div>
-        <div class="bg-1 sizefooter">
-
-            <p style="font-size: 13px;">
+        <div class="row">
+            <div class="col">{{ form_row(form.phone) }}</div>
+            <div class="col">{{ form_row(form.email) }}</div>
         </div>
+        {{ form_rest(form) }}
+        <div class="form-group">
+            <button class="btn btn-primary">Envoyer</button>
+        </div>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
